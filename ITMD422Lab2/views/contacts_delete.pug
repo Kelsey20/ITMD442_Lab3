@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  p Are you sure you want to delete this contact information?
+  hr
+  #contacts-wrapper 
+    <table style="width:100%">
+      <tr>
+        th Contact Id:
+        th First Name
+        th Last Name
+        th Email Address
+        th Notes
+      </tr>
+        tr.contacts-list 
+          th= contact.firstName 
+          th= contact.lastName
+          th= contact.email
+          th= contact.notes
+    </table>
+    hr
+  form(method='POST', action='/contacts/' + contact.id + '/delete')
+    button(type='submit') Confirm Delete
+    | 
+    a(href='/contacts/' + contact.id) Cancel 
+
+    
