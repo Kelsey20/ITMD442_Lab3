@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const contactsRepo = require('../src/contactsFileRepository');
+const Contact = require('../src/Contact');
 
 /* GET users listing. */
 /* First of all, need to apply the Module Exports funtional, instead of the 'router.get' */
@@ -8,6 +9,7 @@ exports.contacts_list = function(req, res, next) {
   res.render('contacts', {title:'Contacts Page', contacts: data});
   //add the data method to the contact page
 };
+
 
 
 /* GET users add contact. */

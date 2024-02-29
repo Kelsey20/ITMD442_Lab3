@@ -3,6 +3,7 @@ const crypto = require('node:crypto');
 const fs = require('fs');
 const path = require('path');
 const db = new Map();
+const Contact = require('../src/Contact');
 
 /*db.set('1f95d3f9-f22e-4981-8d78-9e41c3b8ecc7', {text: 'This is text 1', id: '1f95d3f9-f22e-4981-8d78-9e41c3b8ecc7'});
 db.set('e766a5f5-4c28-4b95-ba61-e56b19bca5ed', {text: 'This is text 2', id: 'e766a5f5-4c28-4b95-ba61-e56b19bca5ed'}); */
