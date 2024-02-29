@@ -2,21 +2,23 @@ const { validationResult } = require('express-validator');
 const contactsRepo = require('../src/contactsFileRepository');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+/* First of all, need to apply the Module Exports funtional, instead of the 'router.get' */
+exports.contacts_list = function(req, res, next) {
     const data  =  contactsRepo.findAll();
   res.render('contacts', {title:'Contacts Page', contacts: data});
   //add the data method to the contact page
-});
+};
 
 
 /* GET users add contact. */
-router.get('/add', function(req, res, next) {
+exports.contacts_create_get = function(req, res, next) {
     res.render('contacts_add', {title:'Add a Contact'});
     //implement the add method to the contact page
-  });
+  };
 
-/* POST users add . */
-router.post('/add', function(req, res, next) {
+/* POST users add */
+/* Modify the router wiht exports.contacts_create_post*/
+exports.contacts_create_post = function(req, res, next) {
     //console.log(req.body);
     if (req.body.firstName.trim() === '' || req.body.lastName.trim() === '')  {
         res.render('contacts_add', {title:'Add a Contact', msg:'First Name and Last Name filed can not be empty!!'});
@@ -32,10 +34,11 @@ router.post('/add', function(req, res, next) {
     res.redirect('/contacts');
     }
     //implement the console log at backend
-  });
+  };
 
 /* GET single user contact. */
-router.get('/:uuid', function(req, res, next) {
+/* Instead with the exports_details */
+exports.contacts_details = function(req, res, next) {
     const contact = contactsRepo.findById(req.params.uuid);
     const currentTime = new Date(); // Get the current time
     if (contact) {
@@ -50,31 +53,35 @@ router.get('/:uuid', function(req, res, next) {
     } else {
         res.redirect('/contacts');
     }
-});
+};
 
 /* GET contact delete method*/
-router.get('/:uuid/delete', function(req, res, next) {
+/* exports.contacts_delete_get */
+exports.contacts_delete_get = function(req, res, next) {
     const contact = contactsRepo.findById(req.params.uuid);
     res.render('contacts_delete', { title: 'Delete Your Contact Information', contact: contact} );
-  });
+  };
 
 /* POSt contact delete method*/
-router.post('/:uuid/delete', function(req, res, next) {
+/* exports.contacts_delete_post */
+exports.contacts_delete_post = function(req, res, next) {
     //delete from repo
     contactsRepo.deleteById(req.params.uuid);
     res.redirect('/contacts');
-  });
+  };
 
 
 /* GET contacts edit method */
-router.get('/:uuid/edit', function(req, res, next) {
+/* exports.contacts_edit_get */
+exports.contacts_edit_get = function(req, res, next) {
     const contact = contactsRepo.findById(req.params.uuid);
     res.render('contacts_edit', { title: 'Edit Contact', contact: contact} );
-  });
+  };
   
 
 /* POST users add . */
-router.post('/:uuid/edit', function(req, res, next) {
+/* exports.contacts_edit_post */
+exports.contacts_edit_post = function(req, res, next) {
     //console.log(req.body);
     if (req.body.firstName.trim() === '' || req.body.lastName.trim() === '') {
         const contact = contactsRepo.findById(req.params.uuid);
@@ -95,5 +102,5 @@ router.post('/:uuid/edit', function(req, res, next) {
     res.redirect('/contacts/' + req.params.uuid);
     }
     //implement the console log at backend
-  });
+  };
 
