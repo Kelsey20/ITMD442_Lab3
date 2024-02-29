@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const contactsRepo = require('../src/contactsFileRepository');
-const Contact = require('../src/Contact');
-
+const Contact = require('../src/contact');
 /* GET users listing. */
 /* First of all, need to apply the Module Exports funtional, instead of the 'router.get' */
 exports.contacts_list = function(req, res, next) {
@@ -26,13 +25,8 @@ exports.contacts_create_post = function(req, res, next) {
         res.render('contacts_add', {title:'Add a Contact', msg:'First Name and Last Name filed can not be empty!!'});
     } 
     else {
-    contactsRepo.create({
-        firstName: req.body.firstName.trim(),
-        lastName: req.body.lastName.trim(),
-        email: req.body.email, 
-        notes: req.body.notes,
-        
-    });
+        const newContact = new Contact('', req.body.firstName, req.body.lastName, req.body.email, req.body.notes);
+        contactsRepo.create(newContact);
     res.redirect('/contacts');
     }
     //implement the console log at backend
@@ -81,7 +75,7 @@ exports.contacts_edit_get = function(req, res, next) {
   };
   
 
-/* POST users add . */
+/* POST users edit. */
 /* exports.contacts_edit_post */
 exports.contacts_edit_post = function(req, res, next) {
     //console.log(req.body);
@@ -92,16 +86,10 @@ exports.contacts_edit_post = function(req, res, next) {
             msg: 'First Name and Last Name text fields can NOT be empty!', 
             contact: contact });
     } else {
-        const updatedContact = {
-            id: req.params.uuid, 
-            firstName: req.body.firstName.trim(), 
-            lastName: req.body.lastName.trim(), 
-            email: req.body.email, 
-            notes: req.body.notes ,
-        };
-    contactsRepo.update(updatedContact);
-    //contactsRepo.create({text:req.body.contactText.trim()});
-    res.redirect('/contacts/' + req.params.uuid);
+        const updatedContact = new Contact(req.params.uuid, req.body.firstName, req.body.lastName, req.body.email, req.body.notes, req.body.notes );
+        contactsRepo.update(updatedContact);   
+        //contactsRepo.create({text:req.body.contactText.trim()});
+        res.redirect('/contacts/' + req.params.uuid);
     }
     //implement the console log at backend
   };
