@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+  p Detailed Contact Information
+  a(href='/contacts') Return to contact list page
+  hr
+  #contacts-wrapper 
+    <table style="width:100%">
+      tr
+        th Contact ID: 
+        th First Name
+        th Last Name
+        th Email Address
+        th Notes
+        th Last Opened:
+      tr.contacts-list 
+        th= contact.id
+        th= contact.firstName 
+        th= contact.lastName
+        th= contact.email
+        th= contact.notes
+        th= currentTime
+    </table>
+      .contact-actions 
+      a(href='/contacts/' + contact.id + "/delete") Delete Contact
+      | 
+      a(href='/contacts/' + contact.id + "/edit") Edit Contact
+
+
