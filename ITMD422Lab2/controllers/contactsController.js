@@ -1,15 +1,5 @@
-var express = require('express');
-var router = express.Router();
-const { v4: uuidv4 } = require('uuid'); 
-// Import uuid library for generating IDs
-
-//const contactsRepo = require('../src/contactsMemoryRepository');
+const { validationResult } = require('express-validator');
 const contactsRepo = require('../src/contactsFileRepository');
-/*let data =[
-    {text: 'this is the test', id:'1f95d3f9-f22e-4981-8d78-9e41c3b8ecc7'},
-    {text: 'this is the test', id:'e766a5f5-4c28-4b95-ba61-e56b19bca5ed'}
-
-];*/
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -107,4 +97,3 @@ router.post('/:uuid/edit', function(req, res, next) {
     //implement the console log at backend
   });
 
-module.exports = router;
