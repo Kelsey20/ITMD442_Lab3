@@ -23,7 +23,10 @@ router.get('/', contactsController.contact_list);
 router.get('/add', contactsController.contacts_create_get);
 
 /* POST users add . */
-router.post('/add', contactsController.contacts_create_post);
+router.post('/add', 
+body('firstName').trim().notEmpty().withMessage('First Name can NOT be empty!'),
+body('lastName').trim().notEmpty().withMessage('Last Name can NOT be empty!'),
+contactsController.contacts_create_post);
 
 /* GET single user contact. */
 router.get('/:uuid', contactsController.contacts_details);
