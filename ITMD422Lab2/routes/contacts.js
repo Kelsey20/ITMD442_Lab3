@@ -5,6 +5,8 @@ const { v4: uuidv4 } = require('uuid');
 
 // Bring the Controller to use
 const contactsController = require('../controllers/contactsController');
+const { body } = require('express-validator');
+
 
 //const contactsRepo = require('../src/contactsMemoryRepository');
 const contactsRepo = require('../src/contactsFileRepository');
@@ -16,7 +18,7 @@ const contactsRepo = require('../src/contactsFileRepository');
 
 /* GET users listing. */
 /* function call back */
-router.get('/', contactsController.contact_list);
+router.get('/', contactsController.contacts_list);
 
 
 /* GET users add contact. */
