@@ -5,7 +5,7 @@ By Xiaojie Luo
 Email: xluo30@hawk.iit.edu
 
 
-Git Repository URL: https://github.com/Kelsey20/ITMD442_Lab2
+Git Repository URL:  https://kelsey20.github.io/ITMD442_Lab3/
 
 ----
 
@@ -23,7 +23,7 @@ Git Repository URL: https://github.com/Kelsey20/ITMD442_Lab2
 
 **Insight and Resaults** - So far so good, one of the small issue that I met is "How to delete the ids while deleting the records, because I found that after deleting the records, the id of each record are still being added automatically."
 
-**Installation/Running Instructions** – In order to run the app, you are going to have to make sure NodeJS is installed. Once it is installed, you would then need to clone this repository and place it wherever you want. Next, you are going to need to open your command line and go to the directory of the cloned repository. Once there you are going to need to type *npm i* to install the dependencies. Next, you need to type: npm run start/dev. Finally, you can type Localhost:3000 to see the index.
+**Installation/Running Instructions** – In order to run the app, you are going to have to make sure NodeJS is installed. Once it is installed, you would then need to clone this repository to your computer. Next, you are going to need to open your command line and go to the directory of the cloned repository. Once there you are located at the "../ITMD442_Lab3/ITMD422Lab2" you need to type *npm i* to install the dependencies. Next, you need to type: npm run start/dev. Finally, you can type Localhost:3000 to see the index.
 
 
 **References** - ITMD-442 blackboard week6/7recordings, Chatgpt also helped me a lot, espacailly I met some error messages.
