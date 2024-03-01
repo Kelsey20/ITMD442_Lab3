@@ -45,6 +45,9 @@ router.get('/:uuid/edit', contactsController.contacts_edit_get);
   
 
 /* POST edit post method . */
-router.post('/:uuid/edit', contactsController.contacts_edit_post);
+router.post('/:uuid/edit',
+body('firstName').trim().notEmpty().withMessage('First Name can NOT be empty!'),
+body('lastName').trim().notEmpty().withMessage('Last Name can NOT be empty!'),
+contactsController.contacts_edit_post);
 
 module.exports = router;

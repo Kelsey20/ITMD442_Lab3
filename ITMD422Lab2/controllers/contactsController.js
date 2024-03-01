@@ -86,10 +86,10 @@ exports.contacts_edit_post = function(req, res, next) {
       const contact = contactsRepo.findById(req.params.uuid);
       res.render('contacts_edit', { title: 'Edit contact', msg:'First Name and Last Name text fields can NOT be empty!', contact: contact});
     } else {
-      const updatedContact = new Contact(req.params.uuid, req.body.firstName, req.body.lastName, req.body.email, req.body.notes, req.body.notes );
-      contactsRepo.update(updatedContact);   
+    const updatedContact = new Contact(req.params.uuid, req.body.firstName, req.body.lastName, req.body.email, req.body.notes, req.body.notes );
+    contactsRepo.update(updatedContact);   
       //contactsRepo.create({text:req.body.contactText.trim()});
-      res.redirect('/contacts/' + req.params.uuid);
+    res.redirect('/contacts/' + req.params.uuid);
     }
     //implement the console log at backend
   };
